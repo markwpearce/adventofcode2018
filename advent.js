@@ -1,9 +1,11 @@
 const readline = require("readline");
 const fs = require("fs");
-const program = require('commander');
 
 
-function log(message) {
+program = require('commander');
+
+
+vlog = function log(message) {
   if (program.verbose) {
     console.log(message);
   }
@@ -12,15 +14,21 @@ function log(message) {
 
 program
   .option('-i, --input [filename]', 'Set input filename')
+  .option('-p, --puzzle [puzzlename]', 'choose what puzzle to load (e.g. 1-1, or 13-2')
   .option('-v, --verbose [filename]', 'Verbosity')
   .parse(process.argv);
 
 if (!program.input) {
-  console.error("Add input file");
+  console.error("Input file is required");
   process.exit();
 }
 
-log(`Using input file ${program.input}`);
+if (!program.puzzle) {
+  console.error("Puzzle number is required");
+  process.exit();
+}
+
+vlog(`Using input file ${program.input}`);
 
 const numbers = [];
 
@@ -30,12 +38,12 @@ const rl = readline.createInterface({
 
 rl.on("line", function(line) {
   const num = parseInt(line, 10);
-  log(num);
+  vlog(num);
   numbers.push(num);
 });
 
 rl.on("close", function() {
-  const inputTotal = numbers.reduce((total, val) => { return total + val; }, 0);
-  log("Result:")
-  console.log(inputTotal);
+  const puzzle = require("./days/" + program.puzzle);
+  vlog("Result:");
+  console.log(puzzle(numbers));
 });
