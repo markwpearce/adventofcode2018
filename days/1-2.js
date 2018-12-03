@@ -1,6 +1,6 @@
 const NumberDay = require("./day").NumberDay;
 
-class Puzzle12 extends NumberDay {
+class Puzzle1_2 extends NumberDay {
 
   run(numbers) {
     const frequencies = {};
@@ -19,4 +19,4 @@ class Puzzle12 extends NumberDay {
   }
 }
 
-module.exports = new Puzzle12();
+module.exports = { puzzle: Puzzle1_2 };

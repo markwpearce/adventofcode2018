@@ -1,12 +1,11 @@
 const Day = require("./day").Day;
 const vlog = require("../util/vlog");
 
-class Puzzle22 extends Day {
+class Puzzle2_2 extends Day {
 
   removeCharAt(str, i) {
     return str.substring(0, i) + str.substring(i + 1);
   }
-
 
   run(lines) {
     let code = "";
@@ -38,4 +37,4 @@ class Puzzle22 extends Day {
   }
 }
 
-module.exports = new Puzzle22();
+module.exports = { puzzle: Puzzle2_2 };

@@ -1,7 +1,7 @@
 const Day = require("./day").Day;
 const vlog = require("../util/vlog");
 
-class Puzzle21 extends Day {
+class Puzzle2_1 extends Day {
 
   run(lines) {
     const checksumValue = { two: 0, three: 0 };
@@ -34,4 +34,4 @@ class Puzzle21 extends Day {
   }
 }
 
-module.exports = new Puzzle21();
+module.exports = { puzzle: Puzzle2_1 };
