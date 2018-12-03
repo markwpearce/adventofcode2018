@@ -36,6 +36,7 @@ rl.on("line", function(line) {
 });
 
 rl.on("close", function() {
+  const result = puzzle.run(lines);
   vlog("Result:");
-  console.log(puzzle.run(lines));
+  console.log(result);
 });
