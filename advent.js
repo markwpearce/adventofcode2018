@@ -23,20 +23,34 @@ if (!program.puzzle) {
 vlog(`Using input file ${program.input}`);
 
 const lines = [];
-const puzzle = require("./days/" + program.puzzle);
+const puzzle = new(require("./days/" + program.puzzle).puzzle)();
 
 const rl = readline.createInterface({
   input: fs.createReadStream(program.input)
 });
 
+let currentLineNumber = 0;
 rl.on("line", function(line) {
-  const parsedLine = puzzle.parseLine(line);
-  vlog(parsedLine);
-  lines.push(parsedLine);
+  currentLineNumber++;
+  try {
+    const parsedLine = puzzle.parseLine(line);
+    vlog(parsedLine);
+    lines.push(parsedLine);
+  } catch (e) {
+    console.log(`Error parsing line ${currentLineNumber} (${line}): ${e}`);
+    process.exit();
+  }
+
 });
 
 rl.on("close", function() {
-  const result = puzzle.run(lines);
+  let result;
+  try {
+    result = puzzle.run(lines);
+  } catch (e) {
+    console.log(`Error running puzzle solution: ${e}`);
+    process.exit();
+  }
   vlog("Result:");
   console.log(result);
 });
