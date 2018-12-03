@@ -6,8 +6,8 @@ program = require('commander');
 
 program
   .option('-i, --input [filename]', 'Set input filename')
-  .option('-p, --puzzle [puzzlename]', 'choose what puzzle to load (e.g. 1-1, or 13-2')
-  .option('-v, --verbose [filename]', 'Verbosity')
+  .option('-p, --puzzle [puzzlename]', 'choose what puzzle to load (e.g. 1-1, or 13-2)')
+  .option('-v, --verbose', 'Verbose mode on')
   .parse(process.argv);
 
 if (!program.input) {
