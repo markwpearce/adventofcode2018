@@ -1,16 +1,8 @@
 const readline = require("readline");
 const fs = require("fs");
-
+const vlog = require("./util/vlog");
 
 program = require('commander');
-
-
-vlog = function log(message) {
-  if (program.verbose) {
-    console.log(message);
-  }
-}
-
 
 program
   .option('-i, --input [filename]', 'Set input filename')
@@ -30,20 +22,20 @@ if (!program.puzzle) {
 
 vlog(`Using input file ${program.input}`);
 
-const numbers = [];
+const lines = [];
+const puzzle = require("./days/" + program.puzzle);
 
 const rl = readline.createInterface({
   input: fs.createReadStream(program.input)
 });
 
 rl.on("line", function(line) {
-  const num = parseInt(line, 10);
-  vlog(num);
-  numbers.push(num);
+  const parsedLine = puzzle.parseLine(line);
+  vlog(parsedLine);
+  lines.push(parsedLine);
 });
 
 rl.on("close", function() {
-  const puzzle = require("./days/" + program.puzzle);
   vlog("Result:");
-  console.log(puzzle(numbers));
+  console.log(puzzle.run(lines));
 });

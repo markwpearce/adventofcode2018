@@ -1,20 +1,22 @@
-const frequencies = {};
+const NumberDay = require("./day").NumberDay;
 
+class Puzzle12 extends NumberDay {
 
-
-function run(numbers) {
-  let foundDupe = false;
-  let firstDupe = -9999;
-  let frequency = 0;
-  while (!foundDupe) {
-    for (let i = 0; i < numbers.length && !foundDupe; i++) {
-      frequency += numbers[i];
-      foundDupe = (frequencies[frequency]);
-      frequencies[frequency] = 1;
-      firstDupe = frequency;
+  run(numbers) {
+    const frequencies = {};
+    let foundDupe = false;
+    let firstDupe = -9999;
+    let frequency = 0;
+    while (!foundDupe) {
+      for (let i = 0; i < numbers.length && !foundDupe; i++) {
+        frequency += numbers[i];
+        foundDupe = (frequencies[frequency]);
+        frequencies[frequency] = 1;
+        firstDupe = frequency;
+      }
     }
+    return firstDupe;
   }
-  return firstDupe;
 }
 
-module.exports = run;
+module.exports = new Puzzle12();
