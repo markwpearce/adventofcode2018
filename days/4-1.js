@@ -106,13 +106,14 @@ class Puzzle4_1 extends Day {
     return sleepiestGuard;
   }
 
-  findMostSleptMinute(guardData) {
-    const totalMinutesSlept =
-      guardData.days.reduce((sleptSoFar, day) => {
-        return sleptSoFar.map((slept, i) => slept + day.minutes[i]);
-      }, Array(60).fill(0));
+  getTotalMinutesSleptArray(guardData) {
+    return guardData.days.reduce((sleptSoFar, day) => {
+      return sleptSoFar.map((slept, i) => slept + day.minutes[i]);
+    }, Array(60).fill(0));
+  }
 
-    return indexOfMax(totalMinutesSlept);
+  findMostSleptMinute(guardData) {
+    return indexOfMax(this.getTotalMinutesSleptArray(guardData));
   }
 
   run(input) {
