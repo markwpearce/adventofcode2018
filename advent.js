@@ -31,6 +31,10 @@ const rl = readline.createInterface({
 
 let currentLineNumber = 0;
 rl.on("line", function(line) {
+  if (line.trim() === "") {
+    // ignore whitespace lines
+    return;
+  }
   currentLineNumber++;
   try {
     const parsedLine = puzzle.parseLine(line);
