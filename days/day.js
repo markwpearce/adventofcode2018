@@ -17,4 +17,10 @@ class NumberDay {
 }
 
 
-module.exports = { Day, NumberDay };
+class LetterDay {
+  parseLine(line) {
+    return line.split("");
+  }
+}
+
+module.exports = { Day, NumberDay, LetterDay };
