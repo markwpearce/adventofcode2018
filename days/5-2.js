@@ -1,15 +1,10 @@
 const Day = require("./day").Day;
 const Puzzle5_1 = require("./5-1").puzzle;
-const ASCII_CASE_DIFF = require("./5-1").ASCII_CASE_DIFF;
-
 const vlog = require("../util/vlog");
 
 const LETTERS = "abcdfefghijklmnopqrstuvwxyz";
 
 class Puzzle5_2 extends Day {
-
-
-
 
   run(input) {
     const removedLetterReactionSize = {};
