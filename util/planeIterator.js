@@ -23,9 +23,7 @@ function planeIterator(iBegin, jBegin, iSize, jSize, func, pivot, endOfRowFunc) 
         endOfRowFunc(j);
       }
     }
-
   }
-
 }
 
 module.exports = planeIterator;
